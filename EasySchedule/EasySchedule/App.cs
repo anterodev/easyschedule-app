@@ -11,20 +11,9 @@ namespace EasySchedule
     {
         public App()
         {
+            DependencyService.Register<ViewModels.Services.INavigationService, Views.Services.NavigationService>();
             // The root page of your application
-            MainPage = new ContentPage
-            {
-                Content = new StackLayout
-                {
-                    VerticalOptions = LayoutOptions.Center,
-                    Children = {
-                        new Label {
-                            XAlign = TextAlignment.Center,
-                            Text = "Welcome to Xamarin Forms!"
-                        }
-                    }
-                }
-            };
+            MainPage = new NavigationPage(new Views.HomeView());
         }
 
         protected override void OnStart()
