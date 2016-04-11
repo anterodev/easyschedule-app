@@ -6,11 +6,14 @@
   
   <ContentPage.Content>
     <StackLayout Padding="10" Spacing="20">
-      <ListView x:Name="list" ItemsSource="{Binding Items}" SeparatorVisibility="None">
+      <ListView x:Name="list" ItemsSource="{Binding Items}" SeparatorVisibility="None" RowHeight="60">
         <ListView.ItemTemplate>
           <DataTemplate>
-            <TextCell Text="{Binding Day}"
-            TextColor="#4CAF50" />
+            <ViewCell>
+              <StackLayout Orientation="Vertical">
+                <Label Text="{Binding Day}" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="#4CAF50" FontSize="Large"></Label>
+              </StackLayout>
+            </ViewCell>
           </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>
