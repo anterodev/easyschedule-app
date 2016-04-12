@@ -9,11 +9,15 @@ namespace EasySchedule
 {
     public class App : Application
     {
+        public static NavigationPage NavPage = null;
+
         public App()
         {
             DependencyService.Register<ViewModels.Services.INavigationService, Views.Services.NavigationService>();
+            var _navPage = new NavigationPage(new Views.HomeView());
+
             // The root page of your application
-            MainPage = new NavigationPage(new Views.HomeView());
+            MainPage = _navPage;
         }
 
         protected override void OnStart()

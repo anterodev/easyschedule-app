@@ -5,12 +5,12 @@ using System.Windows.Input;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace EasySchedule.ViewModels
 {
-    class HomeViewModel : INotifyPropertyChanged
+    class HomeViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private List<Models.WeeklyDays> _items;
         public List<Models.WeeklyDays> Items
@@ -19,13 +19,37 @@ namespace EasySchedule.ViewModels
             set
             {
                 _items = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Items"));
+                this.Notify("Items");
             }
         }
 
+        private Models.WeeklyDays selectedItem;
+        public Models.WeeklyDays SelectedItem
+        {
+            get { return selectedItem; }
+            set
+            {
+                selectedItem = value;
+                
+                if (selectedItem != null)
+                {
+                    var todovm = new ScheduleViewModel(selectedItem);
+
+                    this._navigationService.NavigateToSchedule(selectedItem);
+                    
+                }
+                selectedItem = null;
+
+                this.Notify("SelectedItem");
+            }
+        }
+        
+        private readonly Services.INavigationService _navigationService;
         public HomeViewModel()
         {
             List();
+
+            this._navigationService = DependencyService.Get<Services.INavigationService>();
         }
 
         async Task List()

@@ -8,9 +8,8 @@ namespace EasySchedule.ViewModels.Services
 {
     interface INavigationService
     {
-        Task NavigateTo(string viewName, object param);
-
         Task NavigateToHome();
-        Task NavigateToSchedule();
+        Task NavigateToSchedule(Models.WeeklyDays param);
+        Task NavigateToNewSchedule(Models.WeeklyDays param);
     }
 }

@@ -8,19 +8,20 @@ namespace EasySchedule.Views.Services
 {
     public class NavigationService : ViewModels.Services.INavigationService
     {
-        public async Task NavigateTo(string viewName, object param)
-        {
-            await EasySchedule.App.Current.MainPage.Navigation.PushAsync(new Views.HomeView());
-        }
 
         public Task NavigateToHome()
         {
             throw new NotImplementedException();
         }
 
-        public Task NavigateToSchedule()
+        public async Task NavigateToSchedule(Models.WeeklyDays param)
         {
-            throw new NotImplementedException();
+            await EasySchedule.App.Current.MainPage.Navigation.PushAsync(new Views.ScheduleView(param));
+        }
+
+        public async Task NavigateToNewSchedule(Models.WeeklyDays param)
+        {
+            await EasySchedule.App.Current.MainPage.Navigation.PushAsync(new Views.NewScheduleView(param));
         }
     }
 }

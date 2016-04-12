@@ -1,17 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EasySchedule.Views.HomeView"
-             Title="Easy Schedule">
-  
+             x:Class="EasySchedule.Views.ScheduleView"
+             Title="Schedule">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Name="Create" Command="{Binding AddCommand}"></ToolbarItem>
+  </ContentPage.ToolbarItems>
   <ContentPage.Content>
     <StackLayout Padding="10" Spacing="20">
-      <ListView x:Name="list" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" SeparatorVisibility="None" RowHeight="60">
+      <ListView x:Name="list" ItemsSource="{Binding Items}" SeparatorVisibility="None" RowHeight="60">
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
               <StackLayout Orientation="Vertical">
-                <Label Text="{Binding Day}" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="#4CAF50" FontSize="Large"></Label>
+                <Label Text="{Binding Description}" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="#4CAF50" FontSize="Large"></Label>
               </StackLayout>
             </ViewCell>
           </DataTemplate>
